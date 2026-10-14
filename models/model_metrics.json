@@ -1,0 +1,112 @@
+{
+  "dataset": {
+    "total_records": 14143,
+    "train_size": 11314,
+    "test_size": 2829,
+    "features_used": [
+      "distance_km",
+      "billable_weight_kg",
+      "actual_weight_kg",
+      "volumetric_weight_kg",
+      "product_volume_cm3",
+      "estimated_delivery_days",
+      "is_same_state",
+      "is_peak_season",
+      "purchase_month",
+      "seller_state",
+      "customer_state",
+      "weight_band",
+      "distance_band"
+    ]
+  },
+  "models": {
+    "linear_regression_baseline": {
+      "rmse": 4.204,
+      "mae": 2.936,
+      "r2": 0.9607,
+      "mape": 10.78
+    },
+    "lightgbm_regressor": {
+      "rmse": 2.021,
+      "mae": 1.574,
+      "r2": 0.9909,
+      "mape": 6.32,
+      "mae_improvement_pct": 46.37,
+      "rmse_improvement_pct": 51.92
+    }
+  },
+  "statistical_checks": {
+    "correlations_with_target": {
+      "distance_km": 0.901,
+      "billable_weight_kg": 0.3301,
+      "actual_weight_kg": 0.2787,
+      "product_volume_cm3": 0.1568,
+      "volumetric_weight_kg": 0.1568,
+      "is_peak_season": 0.1022,
+      "purchase_month": 0.0773,
+      "estimated_delivery_days": -0.1565,
+      "is_same_state": -0.5523
+    },
+    "feature_importance_ranking": [
+      [
+        "billable_weight_kg",
+        1779
+      ],
+      [
+        "distance_km",
+        1513
+      ],
+      [
+        "actual_weight_kg",
+        1198
+      ],
+      [
+        "estimated_delivery_days",
+        956
+      ],
+      [
+        "volumetric_weight_kg",
+        757
+      ],
+      [
+        "purchase_month",
+        488
+      ],
+      [
+        "is_peak_season",
+        382
+      ],
+      [
+        "seller_state",
+        338
+      ],
+      [
+        "customer_state",
+        298
+      ],
+      [
+        "product_volume_cm3",
+        180
+      ],
+      [
+        "distance_band",
+        130
+      ],
+      [
+        "weight_band",
+        126
+      ],
+      [
+        "is_same_state",
+        48
+      ]
+    ],
+    "residuals": {
+      "mean_residual": 0.0032375636976828834,
+      "std_residual": 2.021333094614919,
+      "p90_abs_error": 3.1937396740586013,
+      "p95_abs_error": 3.8665599052355506,
+      "max_abs_error": 15.72557355655043
+    }
+  }
+}

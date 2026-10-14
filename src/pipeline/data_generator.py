@@ -56,7 +56,8 @@ def generate_olist_dataset(output_dir: str, num_orders: int = 15000, seed: int =
     print(f"Generating synthetic Olist dataset with {num_orders} orders...")
     
     states = list(BRAZILIAN_STATES.keys())
-    state_probs = [BRAZILIAN_STATES[s]["weight"] for s in states]
+    raw_probs = [BRAZILIAN_STATES[s]["weight"] for s in states]
+    state_probs = np.array(raw_probs) / np.sum(raw_probs)
     
     # 1. Geolocation Table
     geo_rows = []

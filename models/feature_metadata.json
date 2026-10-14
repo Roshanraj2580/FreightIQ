@@ -1,0 +1,49 @@
+{
+  "numeric_features": [
+    "distance_km",
+    "billable_weight_kg",
+    "actual_weight_kg",
+    "volumetric_weight_kg",
+    "product_volume_cm3",
+    "estimated_delivery_days",
+    "is_same_state",
+    "is_peak_season",
+    "purchase_month"
+  ],
+  "categorical_features": [
+    "seller_state",
+    "customer_state",
+    "weight_band",
+    "distance_band"
+  ],
+  "valid_states": [
+    "AM",
+    "BA",
+    "CE",
+    "DF",
+    "ES",
+    "GO",
+    "MG",
+    "MT",
+    "PA",
+    "PE",
+    "PR",
+    "RJ",
+    "RS",
+    "SC",
+    "SP"
+  ],
+  "weight_bands": [
+    "<1kg",
+    "1-3kg",
+    "3-8kg",
+    "8-15kg",
+    "15kg+"
+  ],
+  "distance_bands": [
+    "Local (<100km)",
+    "Regional (100-500km)",
+    "Long Haul (500-1500km)",
+    "Cross Country (>1500km)"
+  ]
+}
