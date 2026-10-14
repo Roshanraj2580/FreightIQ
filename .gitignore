@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables & secrets
+.env
+*.pem
+*.key
+service_account.json
+credentials.json
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project data artifacts (keep raw large data out of git, but keep processed sample)
+data/raw/*.csv
+data/processed/spark_warehouse/
+data/processed/*.parquet
+*.log
+
+# Models large artifacts (optional, keep compact models tracked or ignored)
+models/*.pkl
+# models/*.joblib
