@@ -1,8 +1,8 @@
 {
   "dataset": {
-    "total_records": 14143,
-    "train_size": 11314,
-    "test_size": 2829,
+    "total_records": 117955,
+    "train_size": 94364,
+    "test_size": 23591,
     "features_used": [
       "distance_km",
       "billable_weight_kg",
@@ -21,92 +21,92 @@
   },
   "models": {
     "linear_regression_baseline": {
-      "rmse": 4.204,
-      "mae": 2.936,
-      "r2": 0.9607,
-      "mape": 10.78
+      "rmse": 4.034,
+      "mae": 2.855,
+      "r2": 0.9593,
+      "mape": 10.7
     },
     "lightgbm_regressor": {
-      "rmse": 2.021,
-      "mae": 1.574,
+      "rmse": 1.911,
+      "mae": 1.5,
       "r2": 0.9909,
-      "mape": 6.32,
-      "mae_improvement_pct": 46.37,
-      "rmse_improvement_pct": 51.92
+      "mape": 6.2,
+      "mae_improvement_pct": 47.45,
+      "rmse_improvement_pct": 52.61
     }
   },
   "statistical_checks": {
     "correlations_with_target": {
-      "distance_km": 0.901,
-      "billable_weight_kg": 0.3301,
-      "actual_weight_kg": 0.2787,
-      "product_volume_cm3": 0.1568,
-      "volumetric_weight_kg": 0.1568,
-      "is_peak_season": 0.1022,
-      "purchase_month": 0.0773,
-      "estimated_delivery_days": -0.1565,
-      "is_same_state": -0.5523
+      "distance_km": 0.8792,
+      "billable_weight_kg": 0.3766,
+      "actual_weight_kg": 0.3224,
+      "volumetric_weight_kg": 0.1656,
+      "product_volume_cm3": 0.1656,
+      "is_peak_season": 0.1017,
+      "purchase_month": 0.0787,
+      "estimated_delivery_days": -0.1524,
+      "is_same_state": -0.5533
     },
     "feature_importance_ranking": [
       [
-        "billable_weight_kg",
-        1779
-      ],
-      [
         "distance_km",
-        1513
+        2248
       ],
       [
-        "actual_weight_kg",
-        1198
+        "billable_weight_kg",
+        2227
       ],
       [
         "estimated_delivery_days",
-        956
+        1075
       ],
       [
         "volumetric_weight_kg",
-        757
+        949
+      ],
+      [
+        "actual_weight_kg",
+        808
       ],
       [
         "purchase_month",
-        488
-      ],
-      [
-        "is_peak_season",
-        382
+        622
       ],
       [
         "seller_state",
-        338
+        578
+      ],
+      [
+        "is_peak_season",
+        564
       ],
       [
         "customer_state",
-        298
+        556
       ],
       [
         "product_volume_cm3",
-        180
+        341
       ],
       [
         "distance_band",
-        130
+        280
       ],
       [
         "weight_band",
-        126
+        186
       ],
       [
         "is_same_state",
-        48
+        64
       ]
     ],
     "residuals": {
-      "mean_residual": 0.0032375636976828834,
-      "std_residual": 2.021333094614919,
-      "p90_abs_error": 3.1937396740586013,
-      "p95_abs_error": 3.8665599052355506,
-      "max_abs_error": 15.72557355655043
+      "mean_residual": -0.03461710648239765,
+      "std_residual": 1.9111163676908502,
+      "p90_abs_error": 3.082204315996023,
+      "p95_abs_error": 3.694855335178209,
+      "max_abs_error": 22.990130063882873
     }
   }
 }

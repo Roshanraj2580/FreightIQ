@@ -1,7 +1,7 @@
 """
 FreightIQ Data Generator & Loader
 Simulates or loads the Olist Brazilian E-Commerce dataset tables matching the exact
-Kaggle schema and statistical distributions.
+Kaggle schema and statistical distributions with full 100,000+ scale vectorized generation.
 """
 
 import os
@@ -36,7 +36,6 @@ CATEGORIES = [
 ]
 
 def haversine_np(lat1, lon1, lat2, lon2):
-    """Calculate the great circle distance in kilometers between two points on earth."""
     R = 6371.0
     phi1, phi2 = np.radians(lat1), np.radians(lat2)
     dphi = np.radians(lat2 - lat1)
@@ -45,15 +44,15 @@ def haversine_np(lat1, lon1, lat2, lon2):
     c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
     return R * c
 
-def generate_olist_dataset(output_dir: str, num_orders: int = 15000, seed: int = 42):
+def generate_olist_dataset(output_dir: str, num_orders: int = 100000, seed: int = 42):
     """
-    Generates realistic synthetic Olist dataset tables matching Kaggle schema.
+    High-speed vectorized generator for 100,000+ Olist e-commerce orders matching Kaggle distributions.
     """
     np.random.seed(seed)
     random.seed(seed)
     os.makedirs(output_dir, exist_ok=True)
     
-    print(f"Generating synthetic Olist dataset with {num_orders} orders...")
+    print(f"Generating realistic Olist dataset with {num_orders:,} orders...")
     
     states = list(BRAZILIAN_STATES.keys())
     raw_probs = [BRAZILIAN_STATES[s]["weight"] for s in states]
@@ -61,12 +60,15 @@ def generate_olist_dataset(output_dir: str, num_orders: int = 15000, seed: int =
     
     # 1. Geolocation Table
     geo_rows = []
+    valid_zips_by_state = {}
+    zip_coords = {}
     for state, info in BRAZILIAN_STATES.items():
         base_zip = random.randint(1000, 99000)
-        for i in range(25):
+        state_zips = []
+        for i in range(40):
             zip_prefix = base_zip + i * 10
-            lat_jitter = info["lat"] + np.random.normal(0, 0.15)
-            lng_jitter = info["lng"] + np.random.normal(0, 0.15)
+            lat_jitter = float(info["lat"] + np.random.normal(0, 0.15))
+            lng_jitter = float(info["lng"] + np.random.normal(0, 0.15))
             geo_rows.append({
                 "geolocation_zip_code_prefix": zip_prefix,
                 "geolocation_lat": round(lat_jitter, 6),
@@ -74,193 +76,179 @@ def generate_olist_dataset(output_dir: str, num_orders: int = 15000, seed: int =
                 "geolocation_city": info["name"],
                 "geolocation_state": state
             })
+            state_zips.append(zip_prefix)
+            zip_coords[zip_prefix] = (lat_jitter, lng_jitter, state)
+        valid_zips_by_state[state] = state_zips
+        
     df_geo = pd.DataFrame(geo_rows)
     df_geo.to_csv(os.path.join(output_dir, "olist_geolocation_dataset.csv"), index=False)
-    
-    # Map zip code prefix to mean lat/lng
-    zip_coords = df_geo.groupby("geolocation_zip_code_prefix")[["geolocation_lat", "geolocation_lng"]].mean().to_dict(orient="index")
-    valid_zips_by_state = df_geo.groupby("geolocation_state")["geolocation_zip_code_prefix"].unique().to_dict()
     
     # 2. Customers Table
     num_customers = int(num_orders * 0.85)
     cust_states = np.random.choice(states, size=num_customers, p=state_probs)
-    customers = []
-    for i in range(num_customers):
-        st = cust_states[i]
-        zip_prefix = int(np.random.choice(valid_zips_by_state[st]))
-        customers.append({
-            "customer_id": f"cust_{i:06d}",
-            "customer_unique_id": f"uniq_{i:06d}",
-            "customer_zip_code_prefix": zip_prefix,
-            "customer_city": BRAZILIAN_STATES[st]["name"],
-            "customer_state": st
-        })
-    df_customers = pd.DataFrame(customers)
+    cust_zips = [random.choice(valid_zips_by_state[st]) for st in cust_states]
+    
+    df_customers = pd.DataFrame({
+        "customer_id": [f"cust_{i:06d}" for i in range(num_customers)],
+        "customer_unique_id": [f"uniq_{i:06d}" for i in range(num_customers)],
+        "customer_zip_code_prefix": cust_zips,
+        "customer_city": [BRAZILIAN_STATES[st]["name"] for st in cust_states],
+        "customer_state": cust_states
+    })
     df_customers.to_csv(os.path.join(output_dir, "olist_customers_dataset.csv"), index=False)
     
     # 3. Sellers Table
-    num_sellers = 600
-    # Sellers skewed heavily towards SP, RJ, MG, PR
-    seller_state_weights = [0.55 if s == "SP" else 0.12 if s in ["RJ", "MG", "PR"] else 0.01 for s in states]
-    seller_state_weights = np.array(seller_state_weights) / sum(seller_state_weights)
+    num_sellers = 1500
+    seller_state_weights = np.array([0.55 if s == "SP" else 0.12 if s in ["RJ", "MG", "PR"] else 0.01 for s in states])
+    seller_state_weights /= seller_state_weights.sum()
     seller_states = np.random.choice(states, size=num_sellers, p=seller_state_weights)
-    sellers = []
-    for i in range(num_sellers):
-        st = seller_states[i]
-        zip_prefix = int(np.random.choice(valid_zips_by_state[st]))
-        sellers.append({
-            "seller_id": f"sell_{i:04d}",
-            "seller_zip_code_prefix": zip_prefix,
-            "seller_city": BRAZILIAN_STATES[st]["name"],
-            "seller_state": st
-        })
-    df_sellers = pd.DataFrame(sellers)
+    seller_zips = [random.choice(valid_zips_by_state[st]) for st in seller_states]
+    
+    df_sellers = pd.DataFrame({
+        "seller_id": [f"sell_{i:04d}" for i in range(num_sellers)],
+        "seller_zip_code_prefix": seller_zips,
+        "seller_city": [BRAZILIAN_STATES[st]["name"] for st in seller_states],
+        "seller_state": seller_states
+    })
     df_sellers.to_csv(os.path.join(output_dir, "olist_sellers_dataset.csv"), index=False)
     
     # 4. Products Table
-    num_products = 3000
-    products = []
-    for i in range(num_products):
-        cat = random.choice(CATEGORIES)
-        # Weight distribution: lognormal with peak around 800g
-        weight_g = int(np.clip(np.random.lognormal(mean=7.0, sigma=1.1), 50, 30000))
-        length_cm = int(np.clip(np.random.normal(30, 15), 10, 105))
-        height_cm = int(np.clip(np.random.normal(18, 12), 5, 80))
-        width_cm = int(np.clip(np.random.normal(20, 10), 10, 80))
-        products.append({
-            "product_id": f"prod_{i:05d}",
-            "product_category_name": cat,
-            "product_name_lenght": random.randint(20, 60),
-            "product_description_lenght": random.randint(100, 2000),
-            "product_photos_qty": random.randint(1, 6),
-            "product_weight_g": weight_g,
-            "product_length_cm": length_cm,
-            "product_height_cm": height_cm,
-            "product_width_cm": width_cm
-        })
-    df_products = pd.DataFrame(products)
+    num_products = 5000
+    prod_weights = np.clip(np.random.lognormal(mean=7.0, sigma=1.1, size=num_products), 50, 30000).astype(int)
+    prod_lengths = np.clip(np.random.normal(30, 15, size=num_products), 10, 105).astype(int)
+    prod_heights = np.clip(np.random.normal(18, 12, size=num_products), 5, 80).astype(int)
+    prod_widths = np.clip(np.random.normal(20, 10, size=num_products), 10, 80).astype(int)
+    prod_cats = np.random.choice(CATEGORIES, size=num_products)
+    
+    df_products = pd.DataFrame({
+        "product_id": [f"prod_{i:05d}" for i in range(num_products)],
+        "product_category_name": prod_cats,
+        "product_name_lenght": np.random.randint(20, 60, size=num_products),
+        "product_description_lenght": np.random.randint(100, 2000, size=num_products),
+        "product_photos_qty": np.random.randint(1, 6, size=num_products),
+        "product_weight_g": prod_weights,
+        "product_length_cm": prod_lengths,
+        "product_height_cm": prod_heights,
+        "product_width_cm": prod_widths
+    })
     df_products.to_csv(os.path.join(output_dir, "olist_products_dataset.csv"), index=False)
     
-    # 5. Orders & Order Items Tables
-    orders = []
-    order_items = []
+    # 5. Vectorized Orders Generation
+    base_time = pd.Timestamp("2017-01-01")
+    random_days = np.random.randint(0, 600, size=num_orders)
+    random_seconds = np.random.randint(0, 86400, size=num_orders)
+    purchase_dates = base_time + pd.to_timedelta(random_days, unit="D") + pd.to_timedelta(random_seconds, unit="s")
     
-    start_date = datetime(2017, 1, 1)
-    date_range_days = 600
+    est_lead_days = np.random.randint(5, 30, size=num_orders)
+    est_delivery_dates = purchase_dates + pd.to_timedelta(est_lead_days, unit="D")
     
-    # Pre-index for quick lookup
-    cust_dict = df_customers.set_index("customer_id").to_dict(orient="index")
-    seller_dict = df_sellers.set_index("seller_id").to_dict(orient="index")
-    prod_dict = df_products.set_index("product_id").to_dict(orient="index")
+    actual_lead_days = np.maximum(2, np.random.normal(est_lead_days - 2, 4)).astype(int)
+    actual_delivery_dates = purchase_dates + pd.to_timedelta(actual_lead_days, unit="D")
+    carrier_dates = purchase_dates + pd.to_timedelta(np.random.randint(1, 4, size=num_orders), unit="D")
     
-    cust_keys = list(cust_dict.keys())
-    seller_keys = list(seller_dict.keys())
-    prod_keys = list(prod_dict.keys())
+    chosen_cust_indices = np.random.randint(0, num_customers, size=num_orders)
+    order_ids = [f"ord_{i:06d}" for i in range(num_orders)]
+    cust_id_col = [f"cust_{idx:06d}" for idx in chosen_cust_indices]
     
-    for i in range(num_orders):
-        order_id = f"ord_{i:06d}"
-        cust_id = random.choice(cust_keys)
-        cust_info = cust_dict[cust_id]
-        
-        purchase_time = start_date + timedelta(
-            days=random.randint(0, date_range_days),
-            hours=random.randint(0, 23),
-            minutes=random.randint(0, 59)
-        )
-        
-        # Delivery speed requirement: estimated delivery date
-        estimated_days = random.randint(5, 30)
-        estimated_delivery = purchase_time + timedelta(days=estimated_days)
-        actual_days = max(2, int(np.random.normal(estimated_days - 2, 4)))
-        actual_delivery = purchase_time + timedelta(days=actual_days)
-        
-        orders.append({
-            "order_id": order_id,
-            "customer_id": cust_id,
-            "order_status": "delivered",
-            "order_purchase_timestamp": purchase_time.strftime("%Y-%m-%d %H:%M:%S"),
-            "order_approved_at": (purchase_time + timedelta(hours=random.randint(1, 12))).strftime("%Y-%m-%d %H:%M:%S"),
-            "order_delivered_carrier_date": (purchase_time + timedelta(days=random.randint(1, 3))).strftime("%Y-%m-%d %H:%M:%S"),
-            "order_delivered_customer_date": actual_delivery.strftime("%Y-%m-%d %H:%M:%S"),
-            "order_estimated_delivery_date": estimated_delivery.strftime("%Y-%m-%d %H:%M:%S")
-        })
-        
-        # 1-3 items per order
-        num_items = np.random.choice([1, 2, 3], p=[0.85, 0.12, 0.03])
-        for item_idx in range(1, num_items + 1):
-            prod_id = random.choice(prod_keys)
-            sell_id = random.choice(seller_keys)
-            prod_info = prod_dict[prod_id]
-            sell_info = seller_dict[sell_id]
-            
-            # Geographic distance
-            c_zip = cust_info["customer_zip_code_prefix"]
-            s_zip = sell_info["seller_zip_code_prefix"]
-            c_coord = zip_coords.get(c_zip, {"geolocation_lat": -23.55, "geolocation_lng": -46.63})
-            s_coord = zip_coords.get(s_zip, {"geolocation_lat": -23.55, "geolocation_lng": -46.63})
-            
-            dist_km = haversine_np(
-                c_coord["geolocation_lat"], c_coord["geolocation_lng"],
-                s_coord["geolocation_lat"], s_coord["geolocation_lng"]
-            )
-            
-            # Brazilian Freight pricing model:
-            # Base fee (~R$ 8.50) + weight rate + distance rate + volumetric surcharge + interstate tax
-            weight_kg = prod_info["product_weight_g"] / 1000.0
-            volume_cm3 = prod_info["product_length_cm"] * prod_info["product_height_cm"] * prod_info["product_width_cm"]
-            volumetric_weight_kg = volume_cm3 / 6000.0
-            billable_weight = max(weight_kg, volumetric_weight_kg)
-            
-            is_same_state = (cust_info["customer_state"] == sell_info["seller_state"])
-            state_tax_multiplier = 1.0 if is_same_state else 1.35
-            
-            # Seasonal factor: November (Black Friday) / December surge
-            month = purchase_time.month
-            seasonal_factor = 1.18 if month in [11, 12] else (0.95 if month in [1, 2] else 1.0)
-            
-            # Delivery speed factor: tighter estimated window costs more
-            speed_factor = 1.25 if estimated_days <= 7 else (1.0 if estimated_days <= 15 else 0.90)
-            
-            # Realistic Freight formula
-            base_cost = 8.50
-            dist_cost = (dist_km / 100.0) * 1.85
-            weight_cost = billable_weight * 2.10
-            
-            raw_freight = (base_cost + dist_cost + weight_cost) * state_tax_multiplier * seasonal_factor * speed_factor
-            noise = np.random.normal(0, 1.8)
-            freight_value = max(6.50, round(raw_freight + noise, 2))
-            
-            item_price = round(float(np.random.lognormal(mean=4.2, sigma=0.8)), 2)
-            
-            order_items.append({
-                "order_id": order_id,
-                "order_item_id": item_idx,
-                "product_id": prod_id,
-                "seller_id": sell_id,
-                "shipping_limit_date": (purchase_time + timedelta(days=5)).strftime("%Y-%m-%d %H:%M:%S"),
-                "price": item_price,
-                "freight_value": freight_value
-            })
-            
-    df_orders = pd.DataFrame(orders)
+    df_orders = pd.DataFrame({
+        "order_id": order_ids,
+        "customer_id": cust_id_col,
+        "order_status": "delivered",
+        "order_purchase_timestamp": purchase_dates.strftime("%Y-%m-%d %H:%M:%S"),
+        "order_approved_at": (purchase_dates + pd.to_timedelta(np.random.randint(1, 12, size=num_orders), unit="h")).strftime("%Y-%m-%d %H:%M:%S"),
+        "order_delivered_carrier_date": carrier_dates.strftime("%Y-%m-%d %H:%M:%S"),
+        "order_delivered_customer_date": actual_delivery_dates.strftime("%Y-%m-%d %H:%M:%S"),
+        "order_estimated_delivery_date": est_delivery_dates.strftime("%Y-%m-%d %H:%M:%S")
+    })
     df_orders.to_csv(os.path.join(output_dir, "olist_orders_dataset.csv"), index=False)
     
-    df_order_items = pd.DataFrame(order_items)
+    # 6. Vectorized Order Items Generation (~1.15 items per order -> ~115,000+ items)
+    item_counts = np.random.choice([1, 2, 3], size=num_orders, p=[0.85, 0.12, 0.03])
+    total_items = int(np.sum(item_counts))
+    
+    rep_order_ids = np.repeat(order_ids, item_counts)
+    rep_cust_indices = np.repeat(chosen_cust_indices, item_counts)
+    rep_est_days = np.repeat(est_lead_days, item_counts)
+    rep_purchase_dates = np.repeat(purchase_dates, item_counts)
+    
+    # Sequence item id per order
+    item_seq = []
+    for c in item_counts:
+        item_seq.extend(range(1, c + 1))
+        
+    chosen_prods = np.random.randint(0, num_products, size=total_items)
+    chosen_sellers = np.random.randint(0, num_sellers, size=total_items)
+    
+    # Pre-calculated arrays for vectorization
+    cust_zips_arr = np.array(cust_zips)[rep_cust_indices]
+    seller_zips_arr = np.array(seller_zips)[chosen_sellers]
+    
+    # Look up coords
+    c_lats = np.array([zip_coords[z][0] for z in cust_zips_arr])
+    c_lngs = np.array([zip_coords[z][1] for z in cust_zips_arr])
+    c_states = np.array([zip_coords[z][2] for z in cust_zips_arr])
+    
+    s_lats = np.array([zip_coords[z][0] for z in seller_zips_arr])
+    s_lngs = np.array([zip_coords[z][1] for z in seller_zips_arr])
+    s_states = np.array([zip_coords[z][2] for z in seller_zips_arr])
+    
+    # Vectorized Haversine
+    dist_kms = haversine_np(c_lats, c_lngs, s_lats, s_lngs)
+    
+    p_weights = prod_weights[chosen_prods]
+    p_lengths = prod_lengths[chosen_prods]
+    p_heights = prod_heights[chosen_prods]
+    p_widths = prod_widths[chosen_prods]
+    
+    weight_kg = p_weights / 1000.0
+    vol_weight_kg = (p_lengths * p_heights * p_widths) / 6000.0
+    billable_weights = np.maximum(weight_kg, vol_weight_kg)
+    
+    is_same = (c_states == s_states)
+    tax_mult = np.where(is_same, 1.0, 1.35)
+    
+    months = rep_purchase_dates.month
+    season_mult = np.where(np.isin(months, [11, 12]), 1.18, np.where(np.isin(months, [1, 2]), 0.95, 1.0))
+    speed_mult = np.where(rep_est_days <= 7, 1.25, np.where(rep_est_days <= 15, 1.0, 0.90))
+    
+    base_cost = 8.50
+    dist_cost = (dist_kms / 100.0) * 1.85
+    weight_cost = billable_weights * 2.10
+    
+    noise = np.random.normal(0, 1.8, size=total_items)
+    raw_freight = (base_cost + dist_cost + weight_cost) * tax_mult * season_mult * speed_mult + noise
+    freight_values = np.maximum(6.50, np.round(raw_freight, 2))
+    
+    prices = np.round(np.random.lognormal(mean=4.2, sigma=0.8, size=total_items), 2)
+    
+    prod_ids = [f"prod_{p:05d}" for p in chosen_prods]
+    sell_ids = [f"sell_{s:04d}" for s in chosen_sellers]
+    ship_limits = (rep_purchase_dates + pd.to_timedelta(5, unit="D")).strftime("%Y-%m-%d %H:%M:%S")
+    
+    df_order_items = pd.DataFrame({
+        "order_id": rep_order_ids,
+        "order_item_id": item_seq,
+        "product_id": prod_ids,
+        "seller_id": sell_ids,
+        "shipping_limit_date": ship_limits,
+        "price": prices,
+        "freight_value": freight_values
+    })
     df_order_items.to_csv(os.path.join(output_dir, "olist_order_items_dataset.csv"), index=False)
     
     print(f"Data generation complete! Saved 6 tables to: {output_dir}")
-    print(f"- Orders: {len(df_orders)}")
-    print(f"- Order items: {len(df_order_items)}")
-    print(f"- Products: {len(df_products)}")
-    print(f"- Customers: {len(df_customers)}")
-    print(f"- Sellers: {len(df_sellers)}")
-    print(f"- Geolocation centroids: {len(df_geo)}")
+    print(f"- Orders: {len(df_orders):,}")
+    print(f"- Order items: {len(df_order_items):,}")
+    print(f"- Products: {len(df_products):,}")
+    print(f"- Customers: {len(df_customers):,}")
+    print(f"- Sellers: {len(df_sellers):,}")
+    print(f"- Geolocation centroids: {len(df_geo):,}")
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Generate synthetic Olist dataset for FreightIQ")
     parser.add_argument("--output-dir", default="data/raw", help="Target output directory")
-    parser.add_argument("--num-orders", type=int, default=15000, help="Number of orders to generate")
+    parser.add_argument("--num-orders", type=int, default=100000, help="Number of orders to generate (default 100,000)")
     args = parser.parse_args()
     
     generate_olist_dataset(args.output_dir, args.num_orders)

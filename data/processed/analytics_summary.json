@@ -1,20 +1,20 @@
 {
   "interstate_vs_intrastate": [
     {
-      "shipment_type": "Intrastate (Same State)",
-      "shipment_count": 3660,
-      "avg_freight": 14.81,
-      "avg_distance_km": 25.7,
-      "cost_per_km": 0.8023,
-      "avg_freight_pct_of_price": 30.82
+      "shipment_type": "Interstate (Cross State)",
+      "shipment_count": 87095,
+      "avg_freight": 40.11,
+      "avg_distance_km": 840.6,
+      "cost_per_km": 0.0596,
+      "avg_freight_pct_of_price": 82.5
     },
     {
-      "shipment_type": "Interstate (Cross State)",
-      "shipment_count": 10483,
-      "avg_freight": 41.06,
-      "avg_distance_km": 885.8,
-      "cost_per_km": 0.0586,
-      "avg_freight_pct_of_price": 84.43
+      "shipment_type": "Intrastate (Same State)",
+      "shipment_count": 30860,
+      "avg_freight": 14.91,
+      "avg_distance_km": 26.8,
+      "cost_per_km": 0.8093,
+      "avg_freight_pct_of_price": 30.22
     }
   ],
   "seasonal_trends": [
@@ -22,109 +22,109 @@
       "purchase_month": 1,
       "month_name": "Jan",
       "is_peak_season": 0,
-      "order_count": 1468,
-      "avg_freight_value": 31.94,
-      "avg_delivery_days": 17.6,
-      "avg_product_price": 91.11
+      "order_count": 12185,
+      "avg_freight_value": 31.37,
+      "avg_delivery_days": 17.1,
+      "avg_product_price": 93.1
     },
     {
       "purchase_month": 2,
       "month_name": "Feb",
       "is_peak_season": 0,
-      "order_count": 1315,
-      "avg_freight_value": 32.22,
-      "avg_delivery_days": 17.7,
-      "avg_product_price": 93.26
+      "order_count": 10985,
+      "avg_freight_value": 31.83,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 92.51
     },
     {
       "purchase_month": 3,
       "month_name": "Mar",
       "is_peak_season": 0,
-      "order_count": 1548,
-      "avg_freight_value": 34.48,
-      "avg_delivery_days": 17.5,
-      "avg_product_price": 89.73
+      "order_count": 11984,
+      "avg_freight_value": 33.18,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 91.94
     },
     {
       "purchase_month": 4,
       "month_name": "Apr",
       "is_peak_season": 0,
-      "order_count": 1412,
-      "avg_freight_value": 34.03,
-      "avg_delivery_days": 17.4,
-      "avg_product_price": 86.98
+      "order_count": 11882,
+      "avg_freight_value": 33.33,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 92.43
     },
     {
       "purchase_month": 5,
       "month_name": "May",
       "is_peak_season": 0,
-      "order_count": 1435,
-      "avg_freight_value": 34.0,
-      "avg_delivery_days": 17.4,
-      "avg_product_price": 90.86
+      "order_count": 12481,
+      "avg_freight_value": 33.35,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 91.66
     },
     {
       "purchase_month": 6,
       "month_name": "Jun",
       "is_peak_season": 0,
-      "order_count": 1378,
-      "avg_freight_value": 33.67,
-      "avg_delivery_days": 17.6,
-      "avg_product_price": 95.15
+      "order_count": 11908,
+      "avg_freight_value": 33.16,
+      "avg_delivery_days": 17.1,
+      "avg_product_price": 93.55
     },
     {
       "purchase_month": 7,
       "month_name": "Jul",
       "is_peak_season": 0,
-      "order_count": 1443,
-      "avg_freight_value": 34.03,
-      "avg_delivery_days": 17.4,
-      "avg_product_price": 92.73
+      "order_count": 12060,
+      "avg_freight_value": 32.83,
+      "avg_delivery_days": 16.9,
+      "avg_product_price": 92.08
     },
     {
       "purchase_month": 8,
       "month_name": "Aug",
       "is_peak_season": 0,
-      "order_count": 1289,
-      "avg_freight_value": 34.27,
-      "avg_delivery_days": 17.5,
-      "avg_product_price": 88.3
+      "order_count": 10572,
+      "avg_freight_value": 33.32,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 92.77
     },
     {
       "purchase_month": 9,
       "month_name": "Sep",
       "is_peak_season": 0,
-      "order_count": 666,
-      "avg_freight_value": 33.37,
-      "avg_delivery_days": 17.5,
-      "avg_product_price": 92.51
+      "order_count": 5891,
+      "avg_freight_value": 33.16,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 91.67
     },
     {
       "purchase_month": 10,
       "month_name": "Oct",
       "is_peak_season": 0,
-      "order_count": 736,
-      "avg_freight_value": 33.1,
-      "avg_delivery_days": 17.3,
-      "avg_product_price": 95.48
+      "order_count": 6002,
+      "avg_freight_value": 32.98,
+      "avg_delivery_days": 17.0,
+      "avg_product_price": 91.26
     },
     {
       "purchase_month": 11,
       "month_name": "Nov (Black Friday)",
       "is_peak_season": 1,
-      "order_count": 735,
-      "avg_freight_value": 39.9,
-      "avg_delivery_days": 17.6,
-      "avg_product_price": 90.67
+      "order_count": 5730,
+      "avg_freight_value": 39.17,
+      "avg_delivery_days": 17.1,
+      "avg_product_price": 91.63
     },
     {
       "purchase_month": 12,
       "month_name": "Dec (Holidays)",
       "is_peak_season": 1,
-      "order_count": 718,
-      "avg_freight_value": 41.23,
-      "avg_delivery_days": 17.6,
-      "avg_product_price": 92.94
+      "order_count": 6275,
+      "avg_freight_value": 39.92,
+      "avg_delivery_days": 16.8,
+      "avg_product_price": 91.04
     }
   ],
   "top_lanes": [
@@ -133,402 +133,402 @@
       "customer_state": "SP",
       "route_lane": "SP->SP",
       "is_same_state": 1,
-      "shipment_count": 3143,
-      "distance_km": 25.5,
-      "avg_freight": 14.79,
-      "avg_est_days": 17.4,
+      "shipment_count": 26201,
+      "distance_km": 26.8,
+      "avg_freight": 14.93,
+      "avg_est_days": 17.0,
       "min_freight": 6.5,
-      "max_freight": 71.7
+      "max_freight": 92.49
     },
     {
       "seller_state": "SP",
       "customer_state": "RJ",
       "route_lane": "SP->RJ",
       "is_same_state": 0,
-      "shipment_count": 1061,
-      "distance_km": 366.5,
-      "avg_freight": 27.92,
-      "avg_est_days": 17.9,
-      "min_freight": 13.38,
-      "max_freight": 98.23
+      "shipment_count": 8799,
+      "distance_km": 363.5,
+      "avg_freight": 28.45,
+      "avg_est_days": 17.1,
+      "min_freight": 13.33,
+      "max_freight": 148.47
     },
     {
       "seller_state": "SP",
       "customer_state": "MG",
       "route_lane": "SP->MG",
       "is_same_state": 0,
-      "shipment_count": 907,
-      "distance_km": 493.0,
-      "avg_freight": 31.88,
-      "avg_est_days": 16.9,
-      "min_freight": 19.06,
-      "max_freight": 123.27
+      "shipment_count": 7285,
+      "distance_km": 496.5,
+      "avg_freight": 31.69,
+      "avg_est_days": 17.0,
+      "min_freight": 16.92,
+      "max_freight": 138.07
     },
     {
       "seller_state": "PR",
       "customer_state": "SP",
       "route_lane": "PR->SP",
       "is_same_state": 0,
-      "shipment_count": 692,
-      "distance_km": 334.5,
-      "avg_freight": 27.46,
-      "avg_est_days": 17.5,
-      "min_freight": 14.18,
-      "max_freight": 88.61
+      "shipment_count": 6243,
+      "distance_km": 334.8,
+      "avg_freight": 27.73,
+      "avg_est_days": 17.0,
+      "min_freight": 11.84,
+      "max_freight": 130.92
     },
     {
       "seller_state": "RJ",
       "customer_state": "SP",
       "route_lane": "RJ->SP",
       "is_same_state": 0,
-      "shipment_count": 655,
-      "distance_km": 369.4,
-      "avg_freight": 28.18,
-      "avg_est_days": 17.5,
-      "min_freight": 16.96,
-      "max_freight": 95.65
+      "shipment_count": 5772,
+      "distance_km": 363.9,
+      "avg_freight": 28.26,
+      "avg_est_days": 17.0,
+      "min_freight": 13.73,
+      "max_freight": 122.06
     },
     {
       "seller_state": "MG",
       "customer_state": "SP",
       "route_lane": "MG->SP",
       "is_same_state": 0,
-      "shipment_count": 625,
-      "distance_km": 495.5,
-      "avg_freight": 31.11,
-      "avg_est_days": 17.7,
-      "min_freight": 18.17,
-      "max_freight": 89.95
-    },
-    {
-      "seller_state": "SP",
-      "customer_state": "PR",
-      "route_lane": "SP->PR",
-      "is_same_state": 0,
-      "shipment_count": 500,
-      "distance_km": 334.1,
-      "avg_freight": 27.25,
-      "avg_est_days": 18.3,
-      "min_freight": 14.64,
-      "max_freight": 107.44
+      "shipment_count": 5736,
+      "distance_km": 494.7,
+      "avg_freight": 31.71,
+      "avg_est_days": 17.1,
+      "min_freight": 17.22,
+      "max_freight": 134.63
     },
     {
       "seller_state": "SP",
       "customer_state": "RS",
       "route_lane": "SP->RS",
       "is_same_state": 0,
-      "shipment_count": 384,
-      "distance_km": 844.8,
-      "avg_freight": 39.78,
-      "avg_est_days": 17.0,
-      "min_freight": 25.28,
-      "max_freight": 102.98
+      "shipment_count": 3838,
+      "distance_km": 848.7,
+      "avg_freight": 40.65,
+      "avg_est_days": 16.9,
+      "min_freight": 25.73,
+      "max_freight": 140.26
     },
     {
       "seller_state": "SP",
-      "customer_state": "SC",
-      "route_lane": "SP->SC",
+      "customer_state": "PR",
+      "route_lane": "SP->PR",
       "is_same_state": 0,
-      "shipment_count": 317,
-      "distance_km": 485.8,
-      "avg_freight": 30.24,
-      "avg_est_days": 18.2,
-      "min_freight": 17.15,
-      "max_freight": 92.31
+      "shipment_count": 3694,
+      "distance_km": 336.8,
+      "avg_freight": 27.82,
+      "avg_est_days": 17.0,
+      "min_freight": 13.68,
+      "max_freight": 129.2
     },
     {
       "seller_state": "SP",
       "customer_state": "BA",
       "route_lane": "SP->BA",
       "is_same_state": 0,
-      "shipment_count": 310,
-      "distance_km": 1459.8,
-      "avg_freight": 55.05,
+      "shipment_count": 2574,
+      "distance_km": 1454.8,
+      "avg_freight": 55.33,
       "avg_est_days": 17.1,
-      "min_freight": 40.92,
-      "max_freight": 107.3
+      "min_freight": 38.54,
+      "max_freight": 163.32
     },
     {
-      "seller_state": "RJ",
-      "customer_state": "RJ",
-      "route_lane": "RJ->RJ",
-      "is_same_state": 1,
-      "shipment_count": 231,
-      "distance_km": 26.1,
-      "avg_freight": 15.39,
-      "avg_est_days": 17.9,
-      "min_freight": 6.5,
-      "max_freight": 77.3
+      "seller_state": "SP",
+      "customer_state": "SC",
+      "route_lane": "SP->SC",
+      "is_same_state": 0,
+      "shipment_count": 2470,
+      "distance_km": 487.4,
+      "avg_freight": 31.57,
+      "avg_est_days": 17.1,
+      "min_freight": 16.83,
+      "max_freight": 118.58
     },
     {
       "seller_state": "PR",
       "customer_state": "RJ",
       "route_lane": "PR->RJ",
       "is_same_state": 0,
-      "shipment_count": 227,
-      "distance_km": 679.7,
-      "avg_freight": 36.2,
-      "avg_est_days": 18.1,
-      "min_freight": 23.64,
-      "max_freight": 70.06
-    },
-    {
-      "seller_state": "SP",
-      "customer_state": "DF",
-      "route_lane": "SP->DF",
-      "is_same_state": 0,
-      "shipment_count": 210,
-      "distance_km": 876.0,
-      "avg_freight": 40.94,
-      "avg_est_days": 17.6,
-      "min_freight": 26.99,
-      "max_freight": 87.77
+      "shipment_count": 2059,
+      "distance_km": 678.5,
+      "avg_freight": 35.83,
+      "avg_est_days": 17.5,
+      "min_freight": 21.44,
+      "max_freight": 131.55
     },
     {
       "seller_state": "MG",
       "customer_state": "RJ",
       "route_lane": "MG->RJ",
       "is_same_state": 0,
-      "shipment_count": 209,
-      "distance_km": 343.4,
-      "avg_freight": 27.36,
-      "avg_est_days": 17.8,
-      "min_freight": 15.41,
-      "max_freight": 61.81
+      "shipment_count": 1901,
+      "distance_km": 342.0,
+      "avg_freight": 27.87,
+      "avg_est_days": 17.2,
+      "min_freight": 13.58,
+      "max_freight": 106.09
     },
     {
       "seller_state": "RJ",
-      "customer_state": "MG",
-      "route_lane": "RJ->MG",
+      "customer_state": "RJ",
+      "route_lane": "RJ->RJ",
+      "is_same_state": 1,
+      "shipment_count": 1871,
+      "distance_km": 26.6,
+      "avg_freight": 14.72,
+      "avg_est_days": 17.2,
+      "min_freight": 6.5,
+      "max_freight": 66.78
+    },
+    {
+      "seller_state": "SP",
+      "customer_state": "DF",
+      "route_lane": "SP->DF",
       "is_same_state": 0,
-      "shipment_count": 209,
-      "distance_km": 343.5,
-      "avg_freight": 27.46,
-      "avg_est_days": 18.3,
-      "min_freight": 15.78,
-      "max_freight": 64.99
+      "shipment_count": 1847,
+      "distance_km": 875.5,
+      "avg_freight": 41.17,
+      "avg_est_days": 16.8,
+      "min_freight": 26.01,
+      "max_freight": 126.27
     },
     {
       "seller_state": "PR",
       "customer_state": "MG",
       "route_lane": "PR->MG",
       "is_same_state": 0,
-      "shipment_count": 204,
-      "distance_km": 821.9,
-      "avg_freight": 40.13,
-      "avg_est_days": 17.4,
-      "min_freight": 26.61,
-      "max_freight": 88.75
+      "shipment_count": 1807,
+      "distance_km": 822.1,
+      "avg_freight": 39.42,
+      "avg_est_days": 17.1,
+      "min_freight": 23.26,
+      "max_freight": 152.62
     },
     {
-      "seller_state": "SP",
-      "customer_state": "CE",
-      "route_lane": "SP->CE",
+      "seller_state": "RJ",
+      "customer_state": "MG",
+      "route_lane": "RJ->MG",
       "is_same_state": 0,
-      "shipment_count": 183,
-      "distance_km": 2368.3,
-      "avg_freight": 77.36,
-      "avg_est_days": 17.4,
-      "min_freight": 58.85,
-      "max_freight": 122.51
+      "shipment_count": 1626,
+      "distance_km": 344.2,
+      "avg_freight": 27.77,
+      "avg_est_days": 17.1,
+      "min_freight": 13.83,
+      "max_freight": 101.74
     },
     {
       "seller_state": "MG",
       "customer_state": "MG",
       "route_lane": "MG->MG",
       "is_same_state": 1,
-      "shipment_count": 151,
-      "distance_km": 31.7,
-      "avg_freight": 14.62,
-      "avg_est_days": 18.0,
+      "shipment_count": 1574,
+      "distance_km": 28.1,
+      "avg_freight": 15.01,
+      "avg_est_days": 17.2,
       "min_freight": 6.5,
-      "max_freight": 46.78
+      "max_freight": 104.75
     },
     {
       "seller_state": "SP",
-      "customer_state": "ES",
-      "route_lane": "SP->ES",
+      "customer_state": "PE",
+      "route_lane": "SP->PE",
       "is_same_state": 0,
-      "shipment_count": 151,
-      "distance_km": 746.7,
-      "avg_freight": 37.8,
-      "avg_est_days": 17.6,
-      "min_freight": 25.81,
-      "max_freight": 74.23
+      "shipment_count": 1243,
+      "distance_km": 2134.3,
+      "avg_freight": 71.65,
+      "avg_est_days": 17.1,
+      "min_freight": 52.71,
+      "max_freight": 160.88
     },
     {
       "seller_state": "SP",
       "customer_state": "GO",
       "route_lane": "SP->GO",
       "is_same_state": 0,
-      "shipment_count": 127,
-      "distance_km": 810.4,
-      "avg_freight": 38.87,
-      "avg_est_days": 17.7,
-      "min_freight": 25.52,
-      "max_freight": 109.01
+      "shipment_count": 1233,
+      "distance_km": 809.1,
+      "avg_freight": 39.12,
+      "avg_est_days": 17.2,
+      "min_freight": 23.72,
+      "max_freight": 132.42
+    },
+    {
+      "seller_state": "SP",
+      "customer_state": "CE",
+      "route_lane": "SP->CE",
+      "is_same_state": 0,
+      "shipment_count": 1197,
+      "distance_km": 2375.9,
+      "avg_freight": 77.5,
+      "avg_est_days": 17.4,
+      "min_freight": 57.36,
+      "max_freight": 156.82
     }
   ],
   "weight_distance_matrix": [
     {
       "weight_band": "1-3kg",
       "distance_band": "Cross Country (>1500km)",
-      "count": 789,
-      "avg_freight": 72.78,
-      "min_freight": 43.95,
-      "max_freight": 134.96
+      "count": 5855,
+      "avg_freight": 72.44,
+      "min_freight": 43.46,
+      "max_freight": 140.63
     },
     {
       "weight_band": "1-3kg",
       "distance_band": "Local (<100km)",
-      "count": 1673,
-      "avg_freight": 12.7,
+      "count": 14896,
+      "avg_freight": 12.66,
       "min_freight": 6.5,
-      "max_freight": 24.51
+      "max_freight": 25.58
     },
     {
       "weight_band": "1-3kg",
       "distance_band": "Long Haul (500-1500km)",
-      "count": 1916,
-      "avg_freight": 38.4,
-      "min_freight": 19.98,
-      "max_freight": 81.76
+      "count": 17622,
+      "avg_freight": 37.77,
+      "min_freight": 19.61,
+      "max_freight": 83.61
     },
     {
       "weight_band": "1-3kg",
       "distance_band": "Regional (100-500km)",
-      "count": 2205,
-      "avg_freight": 25.83,
-      "min_freight": 13.38,
-      "max_freight": 45.56
+      "count": 19000,
+      "avg_freight": 25.89,
+      "min_freight": 13.66,
+      "max_freight": 46.72
     },
     {
       "weight_band": "15kg+",
       "distance_band": "Cross Country (>1500km)",
-      "count": 10,
-      "avg_freight": 119.1,
-      "min_freight": 91.12,
-      "max_freight": 148.92
+      "count": 105,
+      "avg_freight": 125.7,
+      "min_freight": 85.76,
+      "max_freight": 196.24
     },
     {
       "weight_band": "15kg+",
       "distance_band": "Local (<100km)",
-      "count": 23,
-      "avg_freight": 51.91,
-      "min_freight": 35.35,
-      "max_freight": 77.3
+      "count": 266,
+      "avg_freight": 54.08,
+      "min_freight": 32.73,
+      "max_freight": 104.75
     },
     {
       "weight_band": "15kg+",
       "distance_band": "Long Haul (500-1500km)",
-      "count": 20,
-      "avg_freight": 89.7,
-      "min_freight": 64.45,
-      "max_freight": 130.72
+      "count": 336,
+      "avg_freight": 92.15,
+      "min_freight": 57.87,
+      "max_freight": 178.11
     },
     {
       "weight_band": "15kg+",
       "distance_band": "Regional (100-500km)",
-      "count": 29,
-      "avg_freight": 76.71,
-      "min_freight": 53.89,
-      "max_freight": 123.27
+      "count": 380,
+      "avg_freight": 81.49,
+      "min_freight": 52.7,
+      "max_freight": 148.47
     },
     {
       "weight_band": "3-8kg",
       "distance_band": "Cross Country (>1500km)",
-      "count": 492,
-      "avg_freight": 81.4,
-      "min_freight": 51.75,
-      "max_freight": 141.67
+      "count": 3320,
+      "avg_freight": 80.14,
+      "min_freight": 48.56,
+      "max_freight": 145.34
     },
     {
       "weight_band": "3-8kg",
       "distance_band": "Local (<100km)",
-      "count": 1075,
-      "avg_freight": 18.3,
-      "min_freight": 9.16,
-      "max_freight": 39.68
+      "count": 8918,
+      "avg_freight": 18.39,
+      "min_freight": 8.01,
+      "max_freight": 38.52
     },
     {
       "weight_band": "3-8kg",
       "distance_band": "Long Haul (500-1500km)",
-      "count": 1182,
-      "avg_freight": 45.81,
-      "min_freight": 25.48,
-      "max_freight": 85.69
+      "count": 10334,
+      "avg_freight": 45.4,
+      "min_freight": 23.56,
+      "max_freight": 102.2
     },
     {
       "weight_band": "3-8kg",
       "distance_band": "Regional (100-500km)",
-      "count": 1418,
-      "avg_freight": 33.47,
-      "min_freight": 21.81,
-      "max_freight": 61.5
+      "count": 11349,
+      "avg_freight": 33.61,
+      "min_freight": 18.99,
+      "max_freight": 66.67
     },
     {
       "weight_band": "8-15kg",
       "distance_band": "Cross Country (>1500km)",
-      "count": 67,
-      "avg_freight": 93.66,
-      "min_freight": 67.56,
-      "max_freight": 132.39
+      "count": 415,
+      "avg_freight": 96.62,
+      "min_freight": 63.54,
+      "max_freight": 167.57
     },
     {
       "weight_band": "8-15kg",
       "distance_band": "Local (<100km)",
-      "count": 151,
-      "avg_freight": 30.07,
-      "min_freight": 20.26,
-      "max_freight": 49.16
+      "count": 1202,
+      "avg_freight": 29.82,
+      "min_freight": 17.75,
+      "max_freight": 55.35
     },
     {
       "weight_band": "8-15kg",
       "distance_band": "Long Haul (500-1500km)",
-      "count": 175,
-      "avg_freight": 63.24,
-      "min_freight": 39.86,
-      "max_freight": 116.55
+      "count": 1361,
+      "avg_freight": 61.6,
+      "min_freight": 38.69,
+      "max_freight": 129.06
     },
     {
       "weight_band": "8-15kg",
       "distance_band": "Regional (100-500km)",
-      "count": 176,
-      "avg_freight": 47.43,
-      "min_freight": 35.0,
-      "max_freight": 80.17
+      "count": 1402,
+      "avg_freight": 49.4,
+      "min_freight": 31.61,
+      "max_freight": 94.19
     },
     {
       "weight_band": "<1kg",
       "distance_band": "Cross Country (>1500km)",
-      "count": 331,
-      "avg_freight": 69.07,
-      "min_freight": 44.56,
-      "max_freight": 123.71
+      "count": 2102,
+      "avg_freight": 69.05,
+      "min_freight": 42.51,
+      "max_freight": 122.2
     },
     {
       "weight_band": "<1kg",
       "distance_band": "Local (<100km)",
-      "count": 738,
-      "avg_freight": 10.21,
+      "count": 5578,
+      "avg_freight": 10.25,
       "min_freight": 6.5,
-      "max_freight": 19.0
+      "max_freight": 20.05
     },
     {
       "weight_band": "<1kg",
       "distance_band": "Long Haul (500-1500km)",
-      "count": 780,
-      "avg_freight": 34.67,
-      "min_freight": 18.87,
-      "max_freight": 72.7
+      "count": 6457,
+      "avg_freight": 34.45,
+      "min_freight": 17.64,
+      "max_freight": 75.63
     },
     {
       "weight_band": "<1kg",
       "distance_band": "Regional (100-500km)",
-      "count": 893,
-      "avg_freight": 22.47,
-      "min_freight": 14.18,
-      "max_freight": 41.79
+      "count": 7057,
+      "avg_freight": 22.51,
+      "min_freight": 11.84,
+      "max_freight": 42.85
     }
   ]
 }
